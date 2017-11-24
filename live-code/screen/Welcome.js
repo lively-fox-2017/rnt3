@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import {
   View,
-  Text
+  Text,
+  Button
 } from 'react-native'
 
-export default Welcome extends Component {
-  render () {
+export default class Welcome extends Component {
+  render() {
+    const { navigate } = this.props.navigation
     return (
       <View>
-        <Text>Selamat datang di permainan tictac to<Text>
-      <View>
+        <Button
+          onPress={ () => navigate('Start') }
+          title="start"
+         />
+        <Text>Selamat datang di permainan tictac to</Text>
+      </View>
     )
   }
 }

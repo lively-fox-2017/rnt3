@@ -4,7 +4,7 @@ import {
   Text
 } from 'react-native'
 
-export default Main extends Component {
+export default class Main extends Component {
   render () {
     return (
       <View>
