@@ -49,7 +49,7 @@ class Play extends React.Component {
                 style={styles.box}
                 onPress={(val) => {
                   this.props.setBoardValue(this.props.playerChar, rowIdx, idx)
-                  this._opponentTurn()
+                  this.forceUpdate();
                 }}
               >
               </TouchableOpacity>

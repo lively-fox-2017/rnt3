@@ -3,6 +3,10 @@ export const setPlayerName = name => ({
   payload: { name }
 });
 
+export const toggleTurn = () => ({
+  type: 'TOGGLE_TURN'
+});
+
 export const setPlayerO = () => ({
   type: 'SET_PLAYER_O'
 });
