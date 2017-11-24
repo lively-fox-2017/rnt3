@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 
+import { initBoard } from '../actions/BoardAction'
+
 class GameContainer extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = {
-
-    }
+    this.props.initBoard()
   }
 
   render() {
@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-
+  boardElement: state.boardElement
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  initBoard: () => dispatch(initBoard())
 });
 
-export default GameContainer
-// export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);
+// export default GameContainer
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);
