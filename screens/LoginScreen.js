@@ -3,7 +3,8 @@ import {
   Text,
   TextInput,
   View,
-  Button
+  Button,
+  Alert,
 } from 'react-native';
 import {
   connect
@@ -14,6 +15,12 @@ import {
 } from '../actions/userActions';
 
 import styles from '../styles';
+
+const mapStateToProps = (state) => {
+  return {
+    name: state.userReducer.name,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -44,7 +51,13 @@ export class LoginScreen extends React.Component {
           value={ this.props.name }
         />
         <Button
-          onPress={ () => navigate('Play') }
+          onPress={
+            () => {
+              this.props.name.length ?
+              navigate('Play') :
+              Alert.alert('Oops!', 'You need to input your name')
+            }
+          }
           title="Play!"
           color="#2980b9"
         />
@@ -54,6 +67,6 @@ export class LoginScreen extends React.Component {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginScreen);
