@@ -4,12 +4,19 @@ import {
   View,
   Button
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Board from '../components/Board'
-
 import styles from '../styles';
 
-export default class PlayScreen extends React.Component {
+const mapStateToProps = (state) => {
+  return {
+    name: state.userReducer.name,
+  };
+};
+
+
+export class PlayScreen extends React.Component {
   static navigationOptions = {
     title: 'Play!',
     headerLeft: null,
@@ -22,6 +29,7 @@ export default class PlayScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Text>As: { this.props.name }</Text>
         <Board/>
         <Button
           onPress={ () => navigate('GameOver') }
@@ -32,3 +40,7 @@ export default class PlayScreen extends React.Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps
+)(PlayScreen);

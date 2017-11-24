@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   xo: {
-    fontSize: 25,
+    fontSize: 50,
   }
 });
 
