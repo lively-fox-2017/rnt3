@@ -52,16 +52,16 @@ export class GameScreen extends React.Component {
       (locationY >= d.startY && locationY <= d.endY))
 
       if (area && inputs.every(d => d !== area.id)) {
-        this.setState({ userInputs: userInputs.concat(area.id) })
-        setTimeout(() => {
-          this.judgeWinner()
+        this.setState({ userInputs: userInputs.concat(area.id) }, () => {
+        //   this.judgeWinner()
           this.AIAction()
-        }, 5)
+        })
       }
   }
 
   judgeWinner() {
     const { userInputs, AIInputs } = this.state
+    const { navigate } = this.props.navigation    
     const inputs = userInputs.concat(AIInputs)
 
     // if (inputs.length >= 5 ) {
@@ -80,7 +80,7 @@ export class GameScreen extends React.Component {
     //   this.setState({ result: GAME_RESULT_TIE })
     // }
     if(inputs.length === 9) {
-        alert('penuh bang')
+        navigate('GameOver')
     }
   }
 
@@ -126,8 +126,8 @@ export class GameScreen extends React.Component {
                 ]
               }]}
             />
-            {this.props.userInputs ? 
-            this.props.userInputs.map((d, i) => (
+            {
+              userInputs.map((d, i) => (
                 <Circle
                   key={i}
                   xTranslate={CENTER_POINTS[d].x}
@@ -135,26 +135,9 @@ export class GameScreen extends React.Component {
                   color='deepskyblue'
                 />
               ))
-            :
-                userInputs.map((d, i) => (
-                  <Circle
-                    key={i}
-                    xTranslate={CENTER_POINTS[d].x}
-                    yTranslate={CENTER_POINTS[d].y}
-                    color='deepskyblue'
-                  />
-                ))
             }
-            {this.props.AIInputs ?
-            this.props.AIInputs.map((d, i) => (
-                <Cross
-                  key={i}
-                  xTranslate={CENTER_POINTS[d].x}
-                  yTranslate={CENTER_POINTS[d].y}
-                />
-              ))
-            :
-            AIInputs.map((d, i) => (
+            {
+              AIInputs.map((d, i) => (
                 <Cross
                   key={i}
                   xTranslate={CENTER_POINTS[d].x}
