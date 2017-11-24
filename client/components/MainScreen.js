@@ -8,7 +8,7 @@ class MainScreen extends Component{
   render(){
     return(
       <View>
-        <h1>Mari bermain</h1>
+        <Text>Mari bermain</Text>
       </View>
     )
   }
