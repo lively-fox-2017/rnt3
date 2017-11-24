@@ -12,13 +12,13 @@ import GameOver from './components/GameOver';
 
 
 const RootNavigator = StackNavigator({
-  Board: { screen: Board },
   Welcome: { screen: Welcome },
-
+  Board: { screen: Board },
   GameOver: { screen: GameOver},
 });
 
-export default (<Provider store={store}><RootNavigator/></Provider>);
+// export default (<Provider store={store}><RootNavigator/></Provider>);
+export default RootNavigator
 
 const styles = StyleSheet.create({
   container: {

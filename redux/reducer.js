@@ -1,6 +1,6 @@
 import actions from './actions';
 
-export default const reducer = (state={}, action) => {
+export default (state={}, action) => {
   switch (action.type) {
     case actions.playerPlace().type:
       return action.state;
@@ -8,6 +8,6 @@ export default const reducer = (state={}, action) => {
       return action.state;
 
     default:
-
+      return state
   }
 }

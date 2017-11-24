@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-import actions from './redux/actions';
+import actions from '../redux/actions';
 
 class Board extends Component {
   constructor(props) {
@@ -12,14 +12,16 @@ class Board extends Component {
               ['i', 'i', 'i'],
               ['i', 'i', 'i']],
     }
-    this.props.initBoard();
+    // this.props.initBoard();
   }
 
   printBoard() {
     return this.state.board.map((row, indexR) => {
 
       return (
-        row.map((i, indexC) => {return (<Text key={`${indexR} ${indexC}`} onPress={this.pressOnBox(`${indexR} ${indexC}`)}>{`| ${i} |`}</Text>)})
+        <View style={styles.row}>
+          {row.map((i, indexC) => {return (<Text key={`${indexR} ${indexC}`} onPress={this.pressOnBox(`${indexR} ${indexC}`)}>{`| ${i} |`}</Text>)})}
+        </View>
       );
     })
   }
@@ -50,15 +52,16 @@ class Board extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
   row: {
     flex: 1,
     backgroundColor: '#fff',
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
 });
 
@@ -70,8 +73,11 @@ function mapStateToProps(state) {
 
 function mapActionToProps(dispatch) {
   return {
-    initBoard: dispatch(actions.initBoard()),
+    initBoard: () => {
+      dispatch(actions.initBoard())
+    },
   };
 }
 
-export default connect(mapStateToProps, mapActionToProps)(Board);
+export default Board
+// export default connect(null, null)(Board);

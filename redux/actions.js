@@ -1,20 +1,26 @@
-export const playerPlace = (payload) => {
+const playerPlace = (payload) => {
   return {
     type: 'PLAYER_PLACE'
   };
 }
 
-export const botPlace = (pos) => {
+const botPlace = (pos) => {
   return {
     type: 'BOT_MOVE'
   }
 }
 
-export const initBoard = () => {
+const initBoard = () => {
   return {
     type: 'INIT_BOARD',
     state: {board: [['i', 'i', 'i'],
           ['i', 'i', 'i'],
           ['i', 'i', 'i']],}
   };
+}
+
+export default {
+  playerPlace,
+  botPlace,
+  initBoard,
 }

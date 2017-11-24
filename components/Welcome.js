@@ -15,9 +15,7 @@ class Welcome extends Component {
          title="Play"
          color="#841584"
          onPress={() => {
-           alert('as');
            navigate('Board', { name: 'Jane' });
-           alert('ds')
           }
           }
         />
