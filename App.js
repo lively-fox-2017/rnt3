@@ -14,8 +14,8 @@ import Finish from './components/Finish'
 
 const SimpleApp = StackNavigator({
   Home: { screen: Home },
-  Player: { screen: HomeScreendua },
-  Finish: { screen: KontenRedux }
+  Player: { screen: Player },
+  Finish: { screen: Finish }
 });
 
 export default class App extends React.Component {
