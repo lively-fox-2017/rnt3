@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 
 import { setPlayerName } from './../actions/TictactoeActions';
+import { setPlayerO } from './../actions/TictactoeActions';
+import { setPlayerX } from './../actions/TictactoeActions';
+
 
 const mapStateToProps = (state) => ({
   playerName: state.TictactoeReducer.playerName
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setPlayerName: (name) => dispatch(setPlayerName(name))
+  setPlayerName: (name) => dispatch(setPlayerName(name)),
+  setPlayerX: () => dispatch(setPlayerX()),
+  setPlayerO: () => dispatch(setPlayerO())
 });
 
 class Home extends React.Component {
@@ -23,8 +28,20 @@ class Home extends React.Component {
           onChangeText={(playerName) => this.props.setPlayerName(playerName)}
           value={this.props.playerName}
         />
-        <TouchableOpacity style={styles.button} onPress={() => navigate('Play')}>
-          <Text style={styles.buttonText}>Go To Play</Text>
+        <Text>Choose O or X to Start</Text>
+        <TouchableOpacity style={styles.button} 
+        onPress={() => {
+          this.props.setPlayerX()
+          navigate('Play')
+        }}>
+          <Text style={styles.buttonText}>X</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} 
+        onPress={() => {
+          this.props.setPlayerO()
+          navigate('Play')
+        }}>
+          <Text style={styles.buttonText}>O</Text>
         </TouchableOpacity>
       </View>
     );
