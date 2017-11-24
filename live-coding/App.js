@@ -8,6 +8,8 @@ import { Provider } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 
 import store from './src/store'
+import userScreen from './src/components/user'
+import gameScreen from './src/components/game'
 
 export default class App extends React.Component {
   render() {
@@ -25,16 +27,14 @@ const AppNav = StackNavigator({
     navigationOptions: {
       'headerTitle': 'Welcome'
     }
+  },
+
+  Game: {
+    screen: gameScreen,
+    navigationOptions: {
+      'headerTitle': 'Tictactoe Board'
+    }
   }
 }, {
   initialRouteName: 'Home'
 })
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
