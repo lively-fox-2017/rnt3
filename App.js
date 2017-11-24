@@ -3,11 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Welcome from './components/Welcome';
 import Board from './components/Board';
+import GameOver from './components/GameOver';
 
 export default class App extends React.Component {
   render() {
     return (
-      <Board/>
+      <GameOver/>
     );
   }
 }
