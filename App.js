@@ -4,6 +4,10 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 
+import HomeScreen from './screens/Home';
+import PlayScreen from './screens/Play';
+import FinishScreen from './screens/Finish';
+
 const RootNavigator = StackNavigator({
   Home: {
     screen: HomeScreen,

@@ -6,3 +6,5 @@ const TictactoeReducer = (state=def, action) => {
       return state;
   }
 };
+
+export default TictactoeReducer;
