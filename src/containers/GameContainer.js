@@ -46,7 +46,6 @@ class GameContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -55,18 +54,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   row: {
-    flex: 5,
     flexDirection: 'row'
   },
   square: {
-    height: 40,
-    width: 40,
     borderColor: 'gray',
     borderWidth: 1,
     textAlign: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    width: 100,
+    height: 100
   }
 })
 
