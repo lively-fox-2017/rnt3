@@ -1,5 +1,9 @@
 const defaultState = {
-  board: []
+  board: [
+    ['','',''],
+    ['','',''],
+    ['','','']
+  ]
 }
 
 const boardReducer = (state = defaultState, action) => {
