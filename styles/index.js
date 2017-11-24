@@ -4,13 +4,26 @@ import {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  loginContainer: {
     padding: 15,
+  },
+  board: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  tiles: {
+    display: 'flex',
+    width: '30%',
+    height: 100,
+    borderWidth: 0.2,
+    borderColor: '#aaa',
+    marginBottom: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  xo: {
+    fontSize: 25,
   }
 });
 

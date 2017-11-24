@@ -5,6 +5,8 @@ import {
   Button
 } from 'react-native';
 
+import Board from '../components/Board'
+
 import styles from '../styles';
 
 export default class PlayScreen extends React.Component {
@@ -20,7 +22,7 @@ export default class PlayScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>Play</Text>
+        <Board/>
         <Button
           onPress={ () => navigate('GameOver') }
           title="Done!"

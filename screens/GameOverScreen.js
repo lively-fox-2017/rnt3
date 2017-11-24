@@ -20,7 +20,7 @@ export default class GameOverScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>Play Again</Text>
+        <Text>The winner is foo</Text>
         <Button
           onPress={ () => navigate('Play') }
           title="Play again!"

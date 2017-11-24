@@ -44,7 +44,7 @@ export class LoginScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.loginContainer}>
+      <View style={styles.container}>
         <Text>Please enter your name</Text>
         <TextInput
           onChangeText={ (name) => this.changeUserName(name) }
@@ -53,7 +53,7 @@ export class LoginScreen extends React.Component {
         <Button
           onPress={
             () => {
-              this.props.name.length ?
+              this.props.name.trim().length ?
               navigate('Play') :
               Alert.alert('Oops!', 'You need to input your name')
             }
