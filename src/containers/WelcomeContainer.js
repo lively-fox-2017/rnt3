@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 
 class WelcomeContainer extends Component {
 
@@ -18,6 +18,12 @@ class WelcomeContainer extends Component {
         <Text style={{fontSize: 20}}>Welcome to tic-tac-toe</Text>
         <Text>Please Provide your name to continue</Text>
         <TextInput style={{height: 20}} placeholder="Type your name here"></TextInput>
+        <Button
+          onPress={() => this.props.navigation.navigate('Game')}
+          title="Continue to Play"
+          color="#841584"
+          accessibilityLabel="Lets play the game!"
+        />
       </View>
     )
   }

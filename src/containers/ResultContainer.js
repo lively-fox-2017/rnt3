@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'\
+import { connect } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native'
 
 class ResultContainer extends Component {

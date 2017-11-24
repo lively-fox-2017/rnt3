@@ -16,7 +16,12 @@ class GameContainer extends Component {
     return (
       <View style={styles.container}>
         <Text style={{fontSize: 20}}>Lets start the game!</Text>
-
+        <Button
+          onPress={() => this.props.navigation.navigate('Result')}
+          title="End the game"
+          color="#841584"
+          accessibilityLabel="Lets end this game!"
+        />
       </View>
     );
   }
