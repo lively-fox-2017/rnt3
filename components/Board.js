@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+
+import actions from './redux/actions';
 
 class Board extends Component {
   constructor(props) {
@@ -9,6 +12,7 @@ class Board extends Component {
               ['i', 'i', 'i'],
               ['i', 'i', 'i']],
     }
+    this.props.initBoard();
   }
 
   printBoard() {
@@ -58,4 +62,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Board;
+function mapStateToProps(state) {
+  return {
+    board: state.reducer.board,
+  };
+}
+
+function mapActionToProps(dispatch) {
+  return {
+    initBoard: dispatch(actions.initBoard()),
+  };
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Board);

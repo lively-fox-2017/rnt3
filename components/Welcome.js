@@ -16,7 +16,7 @@ class Welcome extends Component {
          color="#841584"
          onPress={() => {
            alert('as');
-           navigate('Bord', { name: 'Jane' });
+           navigate('Board', { name: 'Jane' });
            alert('ds')
           }
           }
