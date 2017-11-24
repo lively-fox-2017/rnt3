@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
+import { connect } from 'react-redux'
+import { nameChange } from '../actions/TicTacToe'
 
 class HomeScreen extends Component{
   // constructor() {
@@ -8,20 +10,32 @@ class HomeScreen extends Component{
   render(){
     return(
       <View>
-        <Text>Welcom</Text>
-        {/* <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value=''
-        /> */}
+        <Text>Welcome</Text>
+        <TextInput
+         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+         onChangeText={(text) => this.props.nameChange(text)}
+         value={this.props.name}
+        />
         <Button
-          onPress={onPressLearnMore}
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
+          onPress={() => navigate('MainScreen')}
+          title="Main Screen"
         />
       </View>
     )
   }
 }
-export default HomeScreen
+
+// export default HomeScreen
+
+const mapStateToProps = (state) => {
+  return {
+    name: state.name
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    nameChange: (name) => dispatch(nameChange(name))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

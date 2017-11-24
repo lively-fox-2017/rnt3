@@ -4,7 +4,7 @@ const stateTictacToe = {
 
 const ticTacToeReducer = (state = stateTictacToe, action) => {
   switch (action.type) {
-    case 'USER_CHANGE':
+    case 'NAME_CHANGE':
       return {
         ...state, name: action.payload.name
       }

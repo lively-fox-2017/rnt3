@@ -6,7 +6,7 @@ import HomeScreen from './components/HomeScreen.js'
 
 const RouterApp = StackNavigator({
   HomeScreen: {
-      screen: MainScreen,
+      screen: HomeScreen,
       navigationOptions: ({navigation}) => ({
           title: `Welcome`
       }),
@@ -14,7 +14,7 @@ const RouterApp = StackNavigator({
   MainScreen: {
       screen: MainScreen,
       navigationOptions: ({navigation}) => ({
-          title: `Welcome`
+          title: `Let Play`
       }),
   },
   // GameOverScreen: {
