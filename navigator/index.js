@@ -6,16 +6,16 @@ import Welcome from '../screens/welcome'
 import Game from '../screens/game'
 
 export const RootNavigator = StackNavigator({
-  Welcome: {
-    screen: Welcome,
-    navigationOptions: {
-      headerTitle: 'Welcome Screen'
-    }
-  },
   Game: {
     screen: Game,
     navigationOptions: {
       headerTitle: 'Game Screen'
+    }
+  },
+  Welcome: {
+    screen: Welcome,
+    navigationOptions: {
+      headerTitle: 'Welcome Screen'
     }
   }
 })
