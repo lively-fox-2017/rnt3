@@ -15,7 +15,7 @@ export default class Start extends Component {
           title="Main"
          />
         <Text>
-        ini start
+        silahkan klik main untukbermain game
         </Text>
       </View>
     )
