@@ -1,21 +1,25 @@
-import React from 'react';
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Navigation from './helpers/Navigation'
-import store from './store'
+import store from './store/index'
 import { Provider } from 'react-redux'
 
 export default class App extends React.Component {
+  constructor () {
+    super()
+  }
   render() {
     return (
+        <View style={styles.container}>
       <Provider store={store}>
-      <View style={styles.container}>
         <Text> Welcome To Tic Tac To </Text>
+        <Navigation/>
+      </Provider>
       </View>
-      </Provider>>
-    );
+    )
   }
 }
-
+//
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
