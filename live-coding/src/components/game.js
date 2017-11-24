@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
   board: {
     borderWidth: 3,
     height: 300,
-    width: 300
+    width: 300,
+    borderColor: 'red'
   },
 
   line: {
@@ -79,6 +80,7 @@ const styles = StyleSheet.create({
     width: 3,
     position: 'absolute',
     borderWidth: 2,
+    borderColor: 'red',
     transform: [
       {
         translateX: 100
