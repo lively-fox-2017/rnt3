@@ -1,17 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+import { Provider } from 'react-redux'
+import { StackNavigator } from 'react-navigation'
+
+import store from './src/store'
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={ store }>
+        <AppNav />
+      </Provider>
     );
   }
 }
+
+const AppNav = StackNavigator({
+  Home: {
+    screen: userScreen,
+    navigationOptions: {
+      'headerTitle': 'Welcome'
+    }
+  }
+}, {
+  initialRouteName: 'Home'
+})
 
 const styles = StyleSheet.create({
   container: {
