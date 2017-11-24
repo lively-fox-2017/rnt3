@@ -7,8 +7,8 @@ export default class screenMain extends React.Component {
     this.state={
       board:[
         ['X','',''],
-        ['','',''],
-        ['','',''],
+        ['','X',''],
+        ['','','X'],
       ]
     }
   }
@@ -19,7 +19,8 @@ export default class screenMain extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Main</Text>
-        <View style={styles.row}>
+        <View >
+        <Button title={this.state.board[0][0]}  />
         <Button title={this.state.board[0][0]}  />
         <Button title={this.state.board[0][0]}  />
         </View>
