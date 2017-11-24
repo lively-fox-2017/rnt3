@@ -29,36 +29,37 @@ class Player extends React.Component {
     let mid = Math.floor((3*3)/2)
 
     for (var i = 0; i < 3; i++) {
-      arr.push([])
       for (var j = 0; j < 3; j++) {
         var random = XO[Math.floor(Math.random()*2)];
         if(random == 'X'){
           if(counterX==mid){
-            arr[i].push('O')
+            arr.push('O')
             counterO++
           }
           else{
-            arr[i].push('X');
+            arr.push('X');
             counterX++
           }
         }
         else{
           if(counterO==mid){
-            arr[i].push('X')
+            arr.push('X')
             counterX++
           }
           else{
-            arr[i].push('O');
+            arr.push('O');
             counterO++
           }
         }
       }
     }
-    console.log(arr)
+
+
+    console.log('mana', arr)
   }
 
   render() {
-    console.log(this.props.randomxonya)
+    // console.log(this.props.randomxonya)
     return (
       <View style={styles.container}>
         <Text style={{paddingVertical: 10, paddingHorizontal: 10,}}>Selamat Datang : {this.state.nama}</Text>
