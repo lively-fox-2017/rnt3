@@ -6,7 +6,7 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      pesan: 'Masukan Nama Anda'
+      nama: 'Masukan Nama Anda'
     }
   }
 
@@ -21,14 +21,19 @@ export default class Home extends React.Component {
       <View style={styles.container}>
         <Text style={{paddingVertical: 50}}></Text>
         <TextInput
-        style={{height: 40}}
-        onChangeText={(pesan) => this.setState({pesan})}
-        value={this.state.pesan}
+        style={{height: 40, paddingHorizontal: 50,}}
+        onChangeText={(nama) => this.setState({nama})}
+        value={this.state.nama}
         />
 
         <Button
         onPress={() => {
-          console.log('satu')
+          if (this.state.nama === "Masukan Nama Anda" || this.state.nama === "") {
+
+          } else {
+            navigate('Player', {nama: this.state.nama})
+
+          }
         }}
         title="Masuk Permainan"
         color="#841584"

@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 
 const news = {
-  allnews: []
+  randomxonya: []
 }
 
 const newsReducers = (state = news, action) => {
   switch (action.type) {
-    case 'DAPAT_BERITA':
-      return {...state, allnews:action.value}
+    case 'RANDOM':
+      return {...state, random:action.value}
     default:
       return state;
   }
 };
 
 export default combineReducers({
-  allnews: newsReducers
+  random: newsReducers
 });
