@@ -17,7 +17,7 @@ class WelcomeContainer extends Component {
       <View style={styles.container}>
         <Text style={{fontSize: 20}}>Welcome to tic-tac-toe</Text>
         <Text>Please Provide your name to continue</Text>
-        <TextInput style={{height: 20}} placeholder="Type your name here"></TextInput>
+        <TextInput style={{height: 40, width: 200, borderColor: 'gray', borderWidth: 1}} placeholder="Type your name here" />
         <Button
           onPress={() => this.props.navigation.navigate('Game')}
           title="Continue to Play"
