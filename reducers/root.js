@@ -5,8 +5,8 @@ const initState = {
 
 function rootReducer(state = initState, action) {
     switch(action.type) {
-        case 'BOARD_UPDATE' :
-            return {...state, gameState: action.payload}
+        case 'FETCH_STATE' :
+            return state
         default:
             return state
     }

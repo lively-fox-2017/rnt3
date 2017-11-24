@@ -1,10 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableWithoutFeedback } from 'react-native';
 
+import { connect } from 'react-redux'
+
 import Circle from './Circle'
+import Cross from './Cross'
 import styles from './styles/gameBoard'
 
-export default class GameScreen extends React.Component {
+import {
+    CENTER_POINTS,
+    AREAS,
+    CONDITIONS,
+    GAME_RESULT_NO,
+    GAME_RESULT_USER,
+    GAME_RESULT_AI,
+    GAME_RESULT_TIE
+  } from '../constants/game'
+
+export class GameScreen extends React.Component {
   constructor(props) {
       super()
       this.state = {
@@ -14,10 +27,7 @@ export default class GameScreen extends React.Component {
   }
 
   AIAction() {
-    const { userInputs, AIInputs, result } = this.state
-    if (result !== -1) {
-      return
-    }
+    const { userInputs, AIInputs } = this.state
     while(true) {
       const inputs = userInputs.concat(AIInputs)
 
@@ -31,13 +41,11 @@ export default class GameScreen extends React.Component {
   }
 
   boardClickHandler(e) {
+    //   alert('its working')
     const { locationX, locationY } = e.nativeEvent
-    const { userInputs, AIInputs, result } = this.state
-    if (result !== -1) {
-      return
-    }
+    const { userInputs, AIInputs } = this.state
     const inputs = userInputs.concat(AIInputs)
-
+    // alert(inputs)
     const area = AREAS.find(d =>
       (locationX >= d.startX && locationX <= d.endX) &&
       (locationY >= d.startY && locationY <= d.endY))
@@ -48,6 +56,10 @@ export default class GameScreen extends React.Component {
           this.AIAction()
         }, 5)
       }
+  }
+
+  async componentWillMount() {
+      this.props.fetchState()
   }
 
   render() {
@@ -98,6 +110,15 @@ export default class GameScreen extends React.Component {
                 />
               ))
             }
+            {
+              AIInputs.map((d, i) => (
+                <Cross
+                  key={i}
+                  xTranslate={CENTER_POINTS[d].x}
+                  yTranslate={CENTER_POINTS[d].y}
+                />
+              ))
+            }
         </View>
         </TouchableWithoutFeedback>
         <Button
@@ -107,3 +128,22 @@ export default class GameScreen extends React.Component {
     );
   }
 }
+
+const maptDispatchToProps = (dispatch) => {
+    return {
+        fetchState: () => dispatch(fetchState())
+    }
+}
+
+const maptStateToProps = (state) => {
+    return {
+        userInputs: state.userInputs,
+        AIInputs: state.AIInputs
+    }
+}
+
+var Connect = connect(
+    maptStateToProps,maptDispatchToProps
+)(GameScreen)
+
+export default Connect
