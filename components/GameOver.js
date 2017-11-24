@@ -13,7 +13,8 @@ class GameOver extends Component {
         <Text>You Win!</Text>
         <Button
           title="Play Again"
-          color="#841584"/>
+          color="#841584"
+          />
       </View>
     );
   }

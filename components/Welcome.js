@@ -7,12 +7,20 @@ class Welcome extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
        <Text>Tic Tac Toe</Text>
        <Button
          title="Play"
-         color="#841584"/>
+         color="#841584"
+         onPress={() => {
+           alert('as');
+           navigate('Bord', { name: 'Jane' });
+           alert('ds')
+          }
+          }
+        />
       </View>
     );
   }
