@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Welcome to Tic Tac Toe Games</Text>
+        <Text> Welcome To Tic Tac To </Text>
       </View>
     );
   }
@@ -13,9 +13,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    marginTop: 20,
+    justifyContent: 'center'
+  }
 });
