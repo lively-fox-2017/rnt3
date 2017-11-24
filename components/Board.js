@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Circle from './Circle'
 import Cross from './Cross'
 import styles from './styles/gameBoard'
+import { fetchState } from '../actions/index'
 
 import {
     CENTER_POINTS,
@@ -53,6 +54,7 @@ export class GameScreen extends React.Component {
       if (area && inputs.every(d => d !== area.id)) {
         this.setState({ userInputs: userInputs.concat(area.id) })
         setTimeout(() => {
+          this.judgeWinner()
           this.AIAction()
         }, 5)
       }
@@ -77,7 +79,7 @@ export class GameScreen extends React.Component {
     //     result === GAME_RESULT_NO && result !== GAME_RESULT_TIE) {
     //   this.setState({ result: GAME_RESULT_TIE })
     // }
-    if(input.length === 9) {
+    if(inputs.length === 9) {
         alert('penuh bang')
     }
   }
@@ -124,8 +126,8 @@ export class GameScreen extends React.Component {
                 ]
               }]}
             />
-            {
-              userInputs.map((d, i) => (
+            {this.props.userInputs ? 
+            this.props.userInputs.map((d, i) => (
                 <Circle
                   key={i}
                   xTranslate={CENTER_POINTS[d].x}
@@ -133,9 +135,26 @@ export class GameScreen extends React.Component {
                   color='deepskyblue'
                 />
               ))
+            :
+                userInputs.map((d, i) => (
+                  <Circle
+                    key={i}
+                    xTranslate={CENTER_POINTS[d].x}
+                    yTranslate={CENTER_POINTS[d].y}
+                    color='deepskyblue'
+                  />
+                ))
             }
-            {
-              AIInputs.map((d, i) => (
+            {this.props.AIInputs ?
+            this.props.AIInputs.map((d, i) => (
+                <Cross
+                  key={i}
+                  xTranslate={CENTER_POINTS[d].x}
+                  yTranslate={CENTER_POINTS[d].y}
+                />
+              ))
+            :
+            AIInputs.map((d, i) => (
                 <Cross
                   key={i}
                   xTranslate={CENTER_POINTS[d].x}

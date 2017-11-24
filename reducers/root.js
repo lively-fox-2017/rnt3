@@ -1,6 +1,8 @@
 const initState = {
     title: 'Welcome to Tic Tac Toe',
-    game: []
+    game: [],
+    userInputs: [],
+    AIInputs: []
 }
 
 function rootReducer(state = initState, action) {
