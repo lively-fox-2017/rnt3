@@ -58,6 +58,30 @@ export class GameScreen extends React.Component {
       }
   }
 
+  judgeWinner() {
+    const { userInputs, AIInputs } = this.state
+    const inputs = userInputs.concat(AIInputs)
+
+    // if (inputs.length >= 5 ) {
+    //   let res = this.isWinner(userInputs)
+    //   if (res && result !== GAME_RESULT_USER) {
+    //     return this.setState({ result: GAME_RESULT_USER })
+    //   }
+    //   res = this.isWinner(AIInputs)
+    //   if (res && result !== GAME_RESULT_AI) {
+    //     return this.setState({ result: GAME_RESULT_AI })
+    //   }
+    // }
+
+    // if (inputs.length === 9 &&
+    //     result === GAME_RESULT_NO && result !== GAME_RESULT_TIE) {
+    //   this.setState({ result: GAME_RESULT_TIE })
+    // }
+    if(input.length === 9) {
+        alert('penuh bang')
+    }
+  }
+
   async componentWillMount() {
       this.props.fetchState()
   }
