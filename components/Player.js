@@ -17,7 +17,44 @@ class Player extends React.Component {
   }
 
   componentWillMount () {
-    this.props.randomXO()
+    // this.props.randomXO()
+    this.acak()
+  }
+
+  acak () {
+    let XO = ['X','O']
+    let arr = [];
+    let counterX = 0;
+    let counterO = 0;
+    let mid = Math.floor((3*3)/2)
+
+    for (var i = 0; i < 3; i++) {
+      arr.push([])
+      for (var j = 0; j < 3; j++) {
+        var random = XO[Math.floor(Math.random()*2)];
+        if(random == 'X'){
+          if(counterX==mid){
+            arr[i].push('O')
+            counterO++
+          }
+          else{
+            arr[i].push('X');
+            counterX++
+          }
+        }
+        else{
+          if(counterO==mid){
+            arr[i].push('X')
+            counterX++
+          }
+          else{
+            arr[i].push('O');
+            counterO++
+          }
+        }
+      }
+    }
+    console.log(arr)
   }
 
   render() {
