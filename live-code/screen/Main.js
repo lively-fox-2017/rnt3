@@ -3,6 +3,7 @@ import {
   View,
   Text
 } from 'react-native'
+import { Table, Rows } from 'react-native-table-component'
 
 
 export default class Main extends Component {
@@ -14,14 +15,20 @@ export default class Main extends Component {
   }
 
   fetchTictacto () {
+    // this.setState({
+    //   tictacto: [
+    //     {"idx1": "x",
+    //     "idx2": "o",
+    //     "idx3": "x",
+    //     "idx4": "o",
+    //     "idx5": "x",
+    //     "idx6": "o"}
+    //   ]
+    // })
     this.setState({
       tictacto: [
-        {"idx1": "x",
-        "idx2": "o",
-        "idx3": "x",
-        "idx4": "o",
-        "idx5": "x",
-        "idx6": "o"}
+        ['x', 'o', 'x'],
+        ['o', 'x', 'o']
       ]
     })
   }
@@ -33,13 +40,10 @@ export default class Main extends Component {
   render () {
     return (
       <View>
-          {this.state.tictacto.map((data) => {
-            {console.log(data.idx1)}
-            return <View>
-                    <Text>{data.idx1} {data.idx2} {data.idx3}</Text>
-                    <Text>{data.idx4} {data.idx5} {data.idx6}</Text>
-                  </View>
-          })}
+          <Text> Board Tic Tac To </Text>
+          <Table>
+            <Rows data={this.state.tictacto} />
+          </Table>
       </View>
     )
   }
