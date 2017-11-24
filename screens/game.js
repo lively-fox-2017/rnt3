@@ -15,14 +15,12 @@ class Game extends React.Component {
     var newBoard = this.props.board
     newBoard[index[0]][index[1]] = this.state.currentTurn
     this.props.setBoard(newBoard)
+    this.props.GameFinish()
     this.setState({
       currentTurn: (this.state.currentTurn === 'x' ? 'o' : 'x')
     })
-    this.props.GameFinish()
-    if (this.props.winner) {
-      console.log('winner', this.props.winner)
-      this.props.navigation.navigate('End')
-    }
+  }
+  isBoardFull (newBoard) {
     let stillEmpty = []
     for (let i=0;i<3;i++) {
       for (let j=0;j<3;j++) {
@@ -34,8 +32,13 @@ class Game extends React.Component {
     if(stillEmpty.length === 0) {
       this.props.navigation.navigate('End')
     }
+    if (this.props.winner) {
+      console.log('winner', this.props.winner)
+      this.props.navigation.navigate('End')
+    }
   }
   render () {
+    this.isBoardFull(this.props.board)
     return (
       <View style={styles.container}>
         <Text>Username: {this.props.user}</Text>

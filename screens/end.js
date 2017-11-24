@@ -8,7 +8,15 @@ class End extends React.Component {
   render () {
     return (
       <View>
-        <Text>Winner {this.props.winner}</Text>
+        {
+          (this.props.winner === '' && <Text>Draw</Text>)
+        }
+        {
+          (this.props.winner === 'x' && <Text>Winner X</Text>)
+        }
+        {
+          (this.props.winner === 'o' && <Text>Winner O</Text>)
+        }
         <Button
           title='Replay?'
           color="black"
@@ -21,9 +29,8 @@ class End extends React.Component {
   }
   replayGame () {
     this.props.resetBoard()
-    const { navigate } = this.props.navigation
-    navigate('Game')
-
+    const { goBack } = this.props.navigation
+    goBack()
   }
 }
 
