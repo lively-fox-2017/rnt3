@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 
-import { initBoard } from '../actions/BoardAction'
+import { initBoard, changeValue } from '../actions/BoardAction'
 
 class GameContainer extends Component {
 
@@ -17,19 +17,19 @@ class GameContainer extends Component {
       <View style={styles.boardContainer}>
         <Text style={{fontSize: 20}}>Lets start the game!!!</Text>
         <View style={styles.row}>
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
+          <Button title={(this.props.boardElement[0][0]) ? this.props.boardElement[0][0] : ''} onPress={() => this.props.changeValue(0, 0, this.props.boardElement)} />
+          <Button title={(this.props.boardElement[0][1]) ? this.props.boardElement[0][1] : ''} onPress={() => this.props.changeValue(0, 1, this.props.boardElement)} />
+          <Button title={(this.props.boardElement[0][2]) ? this.props.boardElement[0][2] : ''} onPress={() => this.props.changeValue(0, 2, this.props.boardElement)} />
         </View>
         <View style={styles.row}>
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
+          <Button title={(this.props.boardElement[1][0]) ? this.props.boardElement[1][0] : ''} onPress={() => this.props.changeValue(1, 0,this.props.boardElement)} />
+          <Button title={(this.props.boardElement[1][1]) ? this.props.boardElement[1][1] : ''} onPress={() => this.props.changeValue(1, 1, this.props.boardElement)} />
+          <Button title={(this.props.boardElement[1][2]) ? this.props.boardElement[1][2] : ''} onPress={() => this.props.changeValue(1, 2, this.props.boardElement)} />
         </View>
         <View style={styles.row}>
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
-          <TextInput style={styles.square}  />
+          <Button title={this.props.boardElement[2][0] ? this.props.boardElement[2][0] : ''} onPress={() => this.props.changeValue(2, 0, this.props.boardElement)} />
+          <Button title={this.props.boardElement[2][1] ? this.props.boardElement[2][1] : ''} onPress={() => this.props.changeValue(2, 1, this.props.boardElement)} />
+          <Button title={this.props.boardElement[2][2] ? this.props.boardElement[2][2] : ''} onPress={() => this.props.changeValue(2, 1, this.props.boardElement)} />
         </View>
         <Button
           onPress={() => this.props.navigation.navigate('Result')}
@@ -73,7 +73,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  initBoard: () => dispatch(initBoard())
+  initBoard: () => dispatch(initBoard()),
+  changeValue: (row, col, value) => dispatch(changeValue(row, col, value))
 });
 
 // export default GameContainer
