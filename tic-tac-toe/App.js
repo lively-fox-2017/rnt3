@@ -1,21 +1,13 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text></Text>
-      </View>
-    );
-  }
-}
+import Welcome from './components/Welcome';
+import GameOver from './components/GameOver';
+import PlayingField from './components/PlayingField';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const App = StackNavigator({
+  Welcome: { screen: Welcome },
+  PlayingField: { screen: PlayingField },
+  GameOver: { screen: GameOver }
 });
+
+export default App;
