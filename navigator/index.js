@@ -4,18 +4,25 @@ import { connect } from 'react-redux'
 
 import Welcome from '../screens/welcome'
 import Game from '../screens/game'
+import End from '../screens/end'
 
 export const RootNavigator = StackNavigator({
+  Welcome: {
+    screen: Welcome,
+    navigationOptions: {
+      headerTitle: 'Welcome Screen'
+    }
+  },
   Game: {
     screen: Game,
     navigationOptions: {
       headerTitle: 'Game Screen'
     }
   },
-  Welcome: {
-    screen: Welcome,
+  End: {
+    screen: End,
     navigationOptions: {
-      headerTitle: 'Welcome Screen'
+      headerTitle: 'Game Over'
     }
   }
 })

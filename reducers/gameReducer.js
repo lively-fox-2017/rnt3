@@ -1,12 +1,18 @@
 const defaultState = {
-  board: ['-','-','-','-','-','-','-','-','-']
+  board: [['-','-','-'],['-','-','-'],['-','-','-']],
+  winner: ''
 }
 
 const Game = (state=defaultState, action) => {
   switch (action.type) {
     case 'SetBoard':
       var data = {...state, board: action.payload.board}
-      console.log(data)
+      return data
+    case 'SetWinner':
+      var data = {...state, winner: action.payload.winner}
+      return data
+    case 'ResetBoard':
+      var data = {...state, winner: '', board:[['-','-','-'],['-','-','-'],['-','-','-']]}
       return data
     default :
       return state
