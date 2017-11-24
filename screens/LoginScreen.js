@@ -42,6 +42,7 @@ export class LoginScreen extends React.Component {
         <Text>Please enter your name</Text>
         <TextInput
           onChangeText={ (name) => this.changeUserName(name) }
+          value={ this.props.name }
         />
         <Button
           onPress={ () => navigate('Play') }
