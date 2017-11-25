@@ -11,8 +11,31 @@ import { userAction } from '../actions'
 import Circle from './circle'
 
 class Game extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      coordinate: {
+        x: '',
+        y: ''
+      }
+    }
+  }
+
   componentWillMount() {
     this.props.fetchUser(this.props.navigation.state.params.user)
+  }
+
+  handleInput(e) {
+    // console.log(e.nativeEvent)
+    const locationX = e.nativeEvent.locationX
+    const locationY = e.nativeEvent.locationY
+
+    this.setState({
+      coordinate: {
+        x: locationX,
+        y: locationY
+      }
+    })
   }
 
   render() {
@@ -21,43 +44,45 @@ class Game extends React.Component {
     return (
       <View>
         <Text>Play as { player }</Text>
-        <View style={ styles.board }>
-          <View style={ styles.line }>
-          </View>
+        <TouchableOpacity onPress={ (e) => this.handleInput(e) }>
+          <View style={ styles.board }>
+            <View style={ styles.line }>
+            </View>
 
-          <View style={ [styles.line, {
-            transform: [
-              {
-                translateX: 200
-              }
-            ]
-          }] }>
-          </View>
+            <View style={ [styles.line, {
+              transform: [
+                {
+                  translateX: 200
+                }
+              ]
+            }] }>
+            </View>
 
-          <View style={ [styles.line, {
-            height: 3,
-            width: 294,
-            transform: [
-              {
-                translateY: 200
-              }
-            ]
-          }] }>
-          </View>
+            <View style={ [styles.line, {
+              height: 3,
+              width: 294,
+              transform: [
+                {
+                  translateY: 200
+                }
+              ]
+            }] }>
+            </View>
 
-          <View style={ [styles.line, {
-            height: 3,
-            width: 294,
-            transform: [
-              {
-                translateY: 100
-              }
-            ]
-          }] }>
-          </View>
+            <View style={ [styles.line, {
+              height: 3,
+              width: 294,
+              transform: [
+                {
+                  translateY: 100
+                }
+              ]
+            }] }>
+            </View>
 
-          <Circle />
-        </View>
+            <Circle />
+          </View>
+        </TouchableOpacity>
       </View>
     )
   }
