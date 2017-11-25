@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { userAction } from '../actions'
+import Circle from './circle'
 
 class Game extends React.Component {
   componentWillMount() {
@@ -19,7 +20,7 @@ class Game extends React.Component {
     const { player, board } = this.props
     return (
       <View>
-        <Text>{ player }</Text>
+        <Text>Play as { player }</Text>
         <View style={ styles.board }>
           <View style={ styles.line }>
           </View>
@@ -54,6 +55,8 @@ class Game extends React.Component {
             ]
           }] }>
           </View>
+
+          <Circle />
         </View>
       </View>
     )
@@ -72,7 +75,8 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     height: 300,
     width: 300,
-    borderColor: 'red'
+    borderColor: 'red',
+    alignSelf: 'center'
   },
 
   line: {
