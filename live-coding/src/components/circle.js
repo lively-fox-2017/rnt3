@@ -9,6 +9,7 @@ class Circle extends React.Component{
   render() {
     return (
       <View style={ [styles.container, {
+        backgroundColor: this.props.bgcolor ? this.props.bgcolor: 'transparent',
         transform: [
           {
             translateX: this.props.x ? this.props.x : 10
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
     width: 70,
     height: 70,
     borderRadius: 40

@@ -16,7 +16,8 @@ class Game extends React.Component {
     this.state = {
       coordinate: {
         x: '',
-        y: ''
+        y: '',
+        bgcolor: ''
       }
     }
   }
@@ -27,13 +28,33 @@ class Game extends React.Component {
 
   handleInput(e) {
     // console.log(e.nativeEvent)
-    const locationX = e.nativeEvent.locationX
-    const locationY = e.nativeEvent.locationY
+    const bgcolor = 'red'
+    const eventLocationX = e.nativeEvent.locationX-25
+    const eventLocationY = e.nativeEvent.locationY-25
+    let locationX = 0
+    let locationY = 0
+
+    if (eventLocationX < 90) {
+      locationX = 15
+    } else if (eventLocationX < 190) {
+      locationX = 115
+    } else {
+      locationX = 215
+    }
+
+    if (eventLocationY < 90) {
+      locationY = 15
+    } else if (eventLocationY < 190) {
+      locationY = 115
+    } else {
+      locationY = 215
+    }
 
     this.setState({
       coordinate: {
         x: locationX,
-        y: locationY
+        y: locationY,
+        bgcolor: bgcolor
       }
     })
   }
@@ -42,7 +63,7 @@ class Game extends React.Component {
     // console.log(this.props);
     const { player, board } = this.props
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Play as { player }</Text>
         <TouchableOpacity onPress={ (e) => this.handleInput(e) }>
           <View style={ styles.board }>
@@ -79,8 +100,7 @@ class Game extends React.Component {
               ]
             }] }>
             </View>
-
-            <Circle />
+            <Circle x={this.state.coordinate.x} y={this.state.coordinate.y} bgcolor={this.state.coordinate.bgcolor} />
           </View>
         </TouchableOpacity>
       </View>
@@ -91,7 +111,7 @@ class Game extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -101,6 +121,7 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     borderColor: 'red',
+    backgroundColor: 'white',
     alignSelf: 'center'
   },
 
