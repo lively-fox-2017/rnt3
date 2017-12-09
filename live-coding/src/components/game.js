@@ -14,11 +14,12 @@ class Game extends React.Component {
   constructor() {
     super()
     this.state = {
-      coordinate: {
-        x: '',
-        y: '',
-        bgcolor: ''
-      }
+      // coordinate: {
+      //   x: '',
+      //   y: '',
+      //   bgcolor: ''
+      // },
+      userInput: []
     }
   }
 
@@ -50,12 +51,27 @@ class Game extends React.Component {
       locationY = 215
     }
 
+    this.handleUserInput(locationX, locationY, bgcolor)
+
+    // this.setState({
+    //   coordinate: {
+    //     x: locationX,
+    //     y: locationY,
+    //     bgcolor: bgcolor
+    //   }
+    // })
+  }
+
+  handleUserInput(locX, locY, bgcol) {
+    let newUserInput = this.state.userInput.slice()
+    newUserInput.push({
+      locationX: locX,
+      locationY: locY,
+      bgcolor: bgcol
+    })
+
     this.setState({
-      coordinate: {
-        x: locationX,
-        y: locationY,
-        bgcolor: bgcolor
-      }
+      userInput: newUserInput
     })
   }
 
@@ -100,7 +116,12 @@ class Game extends React.Component {
               ]
             }] }>
             </View>
-            <Circle x={this.state.coordinate.x} y={this.state.coordinate.y} bgcolor={this.state.coordinate.bgcolor} />
+
+            { this.state.userInput.map((input, index) => {
+              return (
+                <Circle x={input.locationX} y={input.locationY} bgcolor={input.bgcolor} />
+              )
+            }) }
           </View>
         </TouchableOpacity>
       </View>
