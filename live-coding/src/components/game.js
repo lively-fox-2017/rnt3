@@ -9,6 +9,7 @@ import {
 
 import { userAction } from '../actions'
 import Circle from './circle'
+import Box from './box'
 
 class Game extends React.Component {
   constructor() {
@@ -122,6 +123,7 @@ class Game extends React.Component {
                 <Circle x={input.locationX} y={input.locationY} bgcolor={input.bgcolor} />
               )
             }) }
+            <Box/>
           </View>
         </TouchableOpacity>
       </View>
