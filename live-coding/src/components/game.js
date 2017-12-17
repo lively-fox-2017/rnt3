@@ -15,12 +15,9 @@ class Game extends React.Component {
   constructor() {
     super()
     this.state = {
-      // coordinate: {
-      //   x: '',
-      //   y: '',
-      //   bgcolor: ''
-      // },
-      userInput: []
+      userInput: [],
+      computerInput: [],
+      occupiedPosition: []
     }
   }
 
@@ -52,32 +49,127 @@ class Game extends React.Component {
       locationY = 215
     }
 
-    this.handleUserInput(locationX, locationY, bgcolor)
-
-    // this.setState({
-    //   coordinate: {
-    //     x: locationX,
-    //     y: locationY,
-    //     bgcolor: bgcolor
-    //   }
-    // })
+    let position = this.setPosition(locationX, locationY)
+    this.handleUserInput(locationX, locationY, bgcolor, position).then(() => this.handleComputerInput()).catch((err) => alert("Wrong Input"))
   }
 
-  handleUserInput(locX, locY, bgcol) {
-    let newUserInput = this.state.userInput.slice()
-    newUserInput.push({
-      locationX: locX,
-      locationY: locY,
-      bgcolor: bgcol
-    })
+  setPosition (locX, locY) {
+    let pos = 0
+
+    switch(locX) {
+      case 15:
+        if (locY === 15) {
+          pos = 1
+        } else if (locY === 115) {
+          pos = 4
+        } else {
+          pos = 7
+        }
+        break;
+      case 115:
+        if (locY === 15) {
+          pos = 2
+        } else if (locY === 115) {
+          pos = 5
+        } else {
+          pos = 8
+        }
+        break;
+      default:
+        if (locY === 15) {
+          pos = 3
+        } else if (locY === 115) {
+          pos = 6
+        } else {
+          pos = 9
+        }
+    }
+
+    return pos
+  }
+
+  handlePosition (pos) {
+    let newOccupiedPosition = this.state.occupiedPosition.slice()
+    newOccupiedPosition.push(pos)
 
     this.setState({
-      userInput: newUserInput
+      occupiedPosition: newOccupiedPosition
     })
+  }
+
+  handleUserInput(locX, locY, bgcol, position) {
+    return new Promise((resolve, reject) => {
+      if (this.state.occupiedPosition.indexOf(position) !== -1) {
+        reject()
+      } else {
+          this.handlePosition(position)
+
+          let newUserInput = this.state.userInput.slice()
+          newUserInput.push({
+            locationX: locX,
+            locationY: locY,
+            bgcolor: bgcol
+          })
+
+          this.setState({
+            userInput: newUserInput
+          })
+
+        resolve()
+      }
+    });
+  }
+
+  handleComputerInput() {
+    let computerPos = Math.ceil(Math.random()*9)
+    // console.log(computerPos);
+
+    if (this.state.occupiedPosition.indexOf(computerPos) !== -1) {
+      return this.handleComputerInput()
+    } else {
+      let locX = 0
+      let locY = 0
+      let bgcol = 'blue'
+      switch(computerPos) {
+        case 1:
+          locX = 15; locY = 15; break;
+        case 2:
+          locX = 115; locY = 15; break;
+        case 3:
+          locX = 215; locY = 15; break;
+        case 4:
+          locX = 15; locY = 115; break;
+        case 5:
+          locX = 115; locY = 115; break;
+        case 6:
+          locX = 215; locY = 115; break;
+        case 7:
+          locX = 15; locY = 215; break;
+        case 8:
+          locX = 115; locY = 215; break;
+        default:
+          locX = 215; locY = 215;
+      }
+
+      let newComputerInput = this.state.computerInput.slice()
+      newComputerInput.push({
+        locationX: locX,
+        locationY: locY,
+        bgcolor: bgcol
+      })
+
+      this.setState({
+        computerInput: newComputerInput
+      })
+
+      this.handlePosition(computerPos)
+    }
   }
 
   render() {
-    // console.log(this.props);
+    console.log("USER =====>", this.state.userInput);
+    console.log("COMPUTER =====>", this.state.computerInput);
+    console.log("OCCUPIED =====>", this.state.occupiedPosition);
     const { player, board } = this.props
     return (
       <View style={styles.container}>
@@ -119,11 +211,18 @@ class Game extends React.Component {
             </View>
 
             { this.state.userInput.map((input, index) => {
-              return (
-                <Circle x={input.locationX} y={input.locationY} bgcolor={input.bgcolor} />
-              )
-            }) }
-            <Box/>
+                return (
+                  <Circle x={input.locationX} y={input.locationY} bgcolor={input.bgcolor} key={index}/>
+                )
+              })
+            }
+            {
+              this.state.computerInput.map((comInput, index) => {
+                return (
+                  <Box x={comInput.locationX} y={comInput.locationY} bgcolor={comInput.bgcolor} key={index}/>
+                )
+              })
+            }
           </View>
         </TouchableOpacity>
       </View>

@@ -5,17 +5,17 @@ import {
   StyleSheet
 } from 'react-native'
 
-class Circle extends React.Component{
+class Box extends React.Component{
   render() {
     return (
       <View style={ [styles.container, {
-        backgroundColor: this.props.bgcolor ? this.props.bgcolor: 'blue',
+        backgroundColor: this.props.bgcolor ? this.props.bgcolor: 'white',
         transform: [
           {
-            translateX: this.props.x ? this.props.x : 15
+            translateX: this.props.x ? this.props.x : 115
           },
           {
-            translateY: this.props.y ? this.props.y : 15
+            translateY: this.props.y ? this.props.y : 115
           }
         ]
       }]}>
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Circle
+export default Box
