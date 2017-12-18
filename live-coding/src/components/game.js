@@ -50,7 +50,9 @@ class Game extends React.Component {
     }
 
     let position = this.setPosition(locationX, locationY)
-    this.handleUserInput(locationX, locationY, bgcolor, position).then(() => this.handleComputerInput()).catch((err) => alert("Wrong Input"))
+    this.handleUserInput(locationX, locationY, bgcolor, position)
+      .then(() => this.handleComputerInput())
+      .catch((err) => alert("Wrong Input"))
   }
 
   setPosition (locX, locY) {
@@ -88,13 +90,15 @@ class Game extends React.Component {
     return pos
   }
 
-  handlePosition (pos) {
+  handlePosition (player, pos) {
     let newOccupiedPosition = this.state.occupiedPosition.slice()
-    newOccupiedPosition.push(pos)
+    newOccupiedPosition.push({player, pos})
 
     this.setState({
       occupiedPosition: newOccupiedPosition
     })
+
+    this.winningCondition()
   }
 
   handleUserInput(locX, locY, bgcol, position) {
@@ -102,7 +106,7 @@ class Game extends React.Component {
       if (this.state.occupiedPosition.indexOf(position) !== -1) {
         reject()
       } else {
-          this.handlePosition(position)
+          this.handlePosition("user", position)
 
           let newUserInput = this.state.userInput.slice()
           newUserInput.push({
@@ -162,14 +166,45 @@ class Game extends React.Component {
         computerInput: newComputerInput
       })
 
-      this.handlePosition(computerPos)
+      this.handlePosition("computer", computerPos)
     }
   }
 
+  winningCondition () {
+    let filteredUserPos = occupiedPosition.filter((userPos) => {
+      return userPos.player === "user"
+    })
+
+    let filteredComPos = occupiedPosition.filter((comPos) => {
+      return comPos.player === "computer"
+    })
+
+    console.log("user", filteredUserPos);
+    console.log("com", filteredUserPos);
+
+    // if (
+    //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(2) !== -1 filteredUserPos.indexOf(3) !== -1) ||
+    //   (filteredUserPos.indexOf(4) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(6) !== -1) ||
+    //   (filteredUserPos.indexOf(7) !== -1 && filteredUserPos.indexOf(8) !== -1 filteredUserPos.indexOf(9) !== -1) ||
+    //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(9) !== -1) ||
+    //   (filteredUserPos.indexOf(3) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(7) !== -1)
+    // ) {
+    //   return alert("You Win!")
+    // } else if (
+    //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(2) !== -1 filteredComPos.indexOf(3) !== -1) ||
+    //   (filteredComPos.indexOf(4) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(6) !== -1) ||
+    //   (filteredComPos.indexOf(7) !== -1 && filteredComPos.indexOf(8) !== -1 filteredComPos.indexOf(9) !== -1) ||
+    //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(9) !== -1) ||
+    //   (filteredComPos.indexOf(3) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(7) !== -1)
+    // ){
+    //   return alert("Computer Win!")
+    // }
+  }
+
   render() {
-    console.log("USER =====>", this.state.userInput);
-    console.log("COMPUTER =====>", this.state.computerInput);
-    console.log("OCCUPIED =====>", this.state.occupiedPosition);
+    // console.log("USER =====>", this.state.userInput);
+    // console.log("COMPUTER =====>", this.state.computerInput);
+    // console.log("OCCUPIED =====>", this.state.occupiedPosition);
     const { player, board } = this.props
     return (
       <View style={styles.container}>
