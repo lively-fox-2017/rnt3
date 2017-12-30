@@ -98,26 +98,31 @@ class Game extends React.Component {
       occupiedPosition: newOccupiedPosition
     })
 
-    this.winningCondition()
+    // this.winningCondition()
   }
 
   handleUserInput(locX, locY, bgcol, position) {
     return new Promise((resolve, reject) => {
-      if (this.state.occupiedPosition.indexOf(position) !== -1) {
+      // console.log(this.state.occupiedPosition)
+      function findPosition(item) {
+        return item.pos === position
+      }
+
+      if (this.state.occupiedPosition.findIndex(findPosition) !== -1) {
         reject()
       } else {
-          this.handlePosition("user", position)
+        this.handlePosition("user", position)
 
-          let newUserInput = this.state.userInput.slice()
-          newUserInput.push({
-            locationX: locX,
-            locationY: locY,
-            bgcolor: bgcol
-          })
+        let newUserInput = this.state.userInput.slice()
+        newUserInput.push({
+          locationX: locX,
+          locationY: locY,
+          bgcolor: bgcol
+        })
 
-          this.setState({
-            userInput: newUserInput
-          })
+        this.setState({
+          userInput: newUserInput
+        })
 
         resolve()
       }
@@ -128,7 +133,11 @@ class Game extends React.Component {
     let computerPos = Math.ceil(Math.random()*9)
     // console.log(computerPos);
 
-    if (this.state.occupiedPosition.indexOf(computerPos) !== -1) {
+    function findPosition(item) {
+      return item.pos === computerPos
+    }
+
+    if (this.state.occupiedPosition.findIndex(findPosition) !== -1) {
       return this.handleComputerInput()
     } else {
       let locX = 0
@@ -170,36 +179,36 @@ class Game extends React.Component {
     }
   }
 
-  winningCondition () {
-    let filteredUserPos = occupiedPosition.filter((userPos) => {
-      return userPos.player === "user"
-    })
-
-    let filteredComPos = occupiedPosition.filter((comPos) => {
-      return comPos.player === "computer"
-    })
-
-    console.log("user", filteredUserPos);
-    console.log("com", filteredUserPos);
-
-    // if (
-    //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(2) !== -1 filteredUserPos.indexOf(3) !== -1) ||
-    //   (filteredUserPos.indexOf(4) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(6) !== -1) ||
-    //   (filteredUserPos.indexOf(7) !== -1 && filteredUserPos.indexOf(8) !== -1 filteredUserPos.indexOf(9) !== -1) ||
-    //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(9) !== -1) ||
-    //   (filteredUserPos.indexOf(3) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(7) !== -1)
-    // ) {
-    //   return alert("You Win!")
-    // } else if (
-    //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(2) !== -1 filteredComPos.indexOf(3) !== -1) ||
-    //   (filteredComPos.indexOf(4) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(6) !== -1) ||
-    //   (filteredComPos.indexOf(7) !== -1 && filteredComPos.indexOf(8) !== -1 filteredComPos.indexOf(9) !== -1) ||
-    //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(9) !== -1) ||
-    //   (filteredComPos.indexOf(3) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(7) !== -1)
-    // ){
-    //   return alert("Computer Win!")
-    // }
-  }
+  // winningCondition () {
+  //   let filteredUserPos = occupiedPosition.filter((userPos) => {
+  //     return userPos.player === "user"
+  //   })
+  //
+  //   let filteredComPos = occupiedPosition.filter((comPos) => {
+  //     return comPos.player === "computer"
+  //   })
+  //
+  //   console.log("user", filteredUserPos);
+  //   console.log("com", filteredUserPos);
+  //
+  //   // if (
+  //   //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(2) !== -1 filteredUserPos.indexOf(3) !== -1) ||
+  //   //   (filteredUserPos.indexOf(4) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(6) !== -1) ||
+  //   //   (filteredUserPos.indexOf(7) !== -1 && filteredUserPos.indexOf(8) !== -1 filteredUserPos.indexOf(9) !== -1) ||
+  //   //   (filteredUserPos.indexOf(1) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(9) !== -1) ||
+  //   //   (filteredUserPos.indexOf(3) !== -1 && filteredUserPos.indexOf(5) !== -1 filteredUserPos.indexOf(7) !== -1)
+  //   // ) {
+  //   //   return alert("You Win!")
+  //   // } else if (
+  //   //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(2) !== -1 filteredComPos.indexOf(3) !== -1) ||
+  //   //   (filteredComPos.indexOf(4) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(6) !== -1) ||
+  //   //   (filteredComPos.indexOf(7) !== -1 && filteredComPos.indexOf(8) !== -1 filteredComPos.indexOf(9) !== -1) ||
+  //   //   (filteredComPos.indexOf(1) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(9) !== -1) ||
+  //   //   (filteredComPos.indexOf(3) !== -1 && filteredComPos.indexOf(5) !== -1 filteredComPos.indexOf(7) !== -1)
+  //   // ){
+  //   //   return alert("Computer Win!")
+  //   // }
+  // }
 
   render() {
     // console.log("USER =====>", this.state.userInput);
